@@ -1,0 +1,98 @@
+{
+  "session_id": "306f8d30-f739-45aa-b244-8fdcdd57d734",
+  "description": "計算 - 2025-07-08 14:56:29",
+  "user_inputs": {
+    "num1": 99,
+    "num2": 99,
+    "num3": 99
+  },
+  "start_time": "2025-07-08 14:56:30.026338",
+  "end_time": "2025-07-08 14:57:16.635193",
+  "status": "completed",
+  "duration_seconds": 46.608855,
+  "total_modules": 7,
+  "success_modules": 7,
+  "final_result": 96098252406.43803,
+  "tags": [],
+  "modules": {
+    "module1": {
+      "module_name": "module1",
+      "result": {
+        "answer1": 198,
+        "answer2": 104,
+        "answer3": 49.5
+      },
+      "execution_order": 0,
+      "start_time": "2025-07-08 14:56:30.033342",
+      "end_time": "2025-07-08 14:56:32.116383",
+      "duration_seconds": 2.083041,
+      "status": "success"
+    },
+    "module2": {
+      "module_name": "module2",
+      "result": {
+        "answer4": 39204
+      },
+      "execution_order": 1,
+      "start_time": "2025-07-08 14:56:32.123423",
+      "end_time": "2025-07-08 14:56:34.654025",
+      "duration_seconds": 2.530602,
+      "status": "success"
+    },
+    "module3": {
+      "module_name": "module3",
+      "result": {
+        "answer5": 604
+      },
+      "execution_order": 2,
+      "start_time": "2025-07-08 14:56:34.659030",
+      "end_time": "2025-07-08 14:56:37.281589",
+      "duration_seconds": 2.622559,
+      "status": "success"
+    },
+    "module4": {
+      "module_name": "module4",
+      "result": {
+        "answer6": -0.238
+      },
+      "execution_order": 3,
+      "start_time": "2025-07-08 14:56:37.287842",
+      "end_time": "2025-07-08 14:56:40.002283",
+      "duration_seconds": 2.714441,
+      "status": "success"
+    },
+    "module5": {
+      "module_name": "module5",
+      "result": {
+        "answer7": 625078070.5254266
+      },
+      "execution_order": 4,
+      "start_time": "2025-07-08 14:56:40.011797",
+      "end_time": "2025-07-08 14:57:12.460933",
+      "duration_seconds": 32.449136,
+      "status": "success"
+    },
+    "module6": {
+      "module_name": "module6",
+      "result": {
+        "answer8": 153.738
+      },
+      "execution_order": 5,
+      "start_time": "2025-07-08 14:57:12.466883",
+      "end_time": "2025-07-08 14:57:14.559684",
+      "duration_seconds": 2.092801,
+      "status": "success"
+    },
+    "module7": {
+      "module_name": "module7",
+      "result": {
+        "final_result": 96098252406.43803
+      },
+      "execution_order": 6,
+      "start_time": "2025-07-08 14:57:14.565659",
+      "end_time": "2025-07-08 14:57:16.630818",
+      "duration_seconds": 2.065159,
+      "status": "success"
+    }
+  }
+}
