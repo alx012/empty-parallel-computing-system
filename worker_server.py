@@ -99,10 +99,11 @@ def compute():
         }), 500
 
 
+# 修改背景處理判斷為通用版本
 def should_use_background_processing(module_name):
     """判斷是否應該使用背景處理某個模組"""
-    # 計算密集型模組使用背景處理
-    background_modules = ["module5", "module2", "module3"]
+    # 計算密集型模組使用背景處理（範例，請根據實際需求修改）
+    background_modules = ["heavy_compute_module", "data_processing_module"]
     return module_name in background_modules
 
 

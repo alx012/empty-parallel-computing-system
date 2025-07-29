@@ -133,10 +133,7 @@ def send_task_fire_and_forget(task_info):
         print(f"📤 [任務 {task_id+1}] {send_time} 發送到 {worker_url}")
         
         task_packet = {
-            "module_name": "module5_sub",
-            "input_data": subtask,
-            "execution_id": f"module5_parallel_{task_id}",
-            "user_inputs": {}
+
         }
         
         response = requests.post(
@@ -321,7 +318,7 @@ def main(user_inputs, description="", tags=None, base_session_id=None):
     else:
         print("\n⚠️ 未找到最終結果，可能執行中途失敗")
         if "answer7" not in answer_map:
-            print("❌ 主要問題：answer7 缺失（Module5 Merge 可能失敗）")
+            print("❌ 主要問題：answer7 缺失（Module name 可能失敗）")
         else:
             print(f"✅ answer7 存在：{answer_map.get('answer7')}")
     
@@ -366,7 +363,7 @@ def execute_standard_module(module, inputs, exec_id, user_inputs, idx):
         wait_start = time.time()
         print(f"⏳ 等待模組 {module} 執行結果...")
         
-        timeout = 300 if module == "module5_merge" else 120
+        timeout = 300 if module == "module name" else 120
         result_data = receive_result(module, timeout=timeout)
         wait_duration = time.time() - wait_start
         

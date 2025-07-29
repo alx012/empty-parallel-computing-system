@@ -9,21 +9,20 @@ from typing import Dict, Any
 from db_utils import fetch_answers
 
 def send_task_to_worker(worker_url: str, task_packet: Dict[str, Any], timeout: int = 300):
-    """
-    發送任務到指定 worker
-    timeout: HTTP 请求超时时间（秒），默认5分钟，可根据任务复杂度调整
-    """
+    """發送任務到指定 worker"""
     try:
-        # ✅ 针对不同模块设置不同的超时时间
+        # ✅ 通用的超時設定邏輯
         module_name = task_packet.get("module_name", "")
-        if module_name == "module5":
-            timeout = 600  # module5 设置10分钟超时
-        elif module_name.startswith("module5_"):
-            timeout = 300  # module5 子任务设置5分钟超时
-        else:
-            timeout = 60   # 其他模块1分钟超时
         
-        print(f"⏰ 设置 {module_name} 的超时时间为 {timeout} 秒")
+        # 根據模組名稱模式設定超時時間
+        if module_name.endswith("_heavy") or module_name.endswith("_complex"):
+            timeout = 600  # 重計算模組設置10分鐘超時
+        elif module_name.startswith("batch_"):
+            timeout = 300  # 批次處理模組設置5分鐘超時
+        else:
+            timeout = 60   # 一般模組1分鐘超時
+        
+        print(f"⏰ 設置 {module_name} 的超時時間為 {timeout} 秒")
         
         response = requests.post(
             f"{worker_url}/compute",
@@ -46,20 +45,21 @@ def send_task_to_worker(worker_url: str, task_packet: Dict[str, Any], timeout: i
         print(f"❌ 傳送任務至 {worker_url} 失敗：{e}")
         return None
 
+
 def receive_result(module_name: str, timeout: int = 600):
     """
     等待並從 SQLite 資料庫接收模組結果
     timeout: 等待结果的超时时间（秒），默认10分钟
     """
-    # ✅ 针对不同模块设置不同的等待时间
-    if module_name == "module5":
-        timeout = 900  # module5 等待15分钟
-    elif module_name.startswith("module5_"):
-        timeout = 600  # module5 相关任务等待10分钟
+    # ✅ 通用的等待時間設定
+    if module_name.endswith("_heavy") or module_name.endswith("_complex"):
+        timeout = 900  # 重計算模組等待15分鐘
+    elif module_name.startswith("batch_"):
+        timeout = 600  # 批次處理任務等待10分鐘
     else:
-        timeout = 120  # 其他模块等待2分钟
+        timeout = 120  # 一般模組等待2分鐘
     
-    print(f"⏰ 等待 {module_name} 结果，最多等待 {timeout} 秒")
+    print(f"⏰ 等待 {module_name} 結果，最多等待 {timeout} 秒")
     start_time = time.time()
 
     while time.time() - start_time < timeout:
